@@ -165,6 +165,22 @@ section{padding:72px 20px}
 .picon-emoji{font-size:20px;display:block;margin-bottom:4px}
 .picon-txt{font-size:10px;color:var(--greyl);font-weight:600;line-height:1.2}
 
+/* Quick-nav "pistas" — jump straight to each product */
+.quicknav{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 14px;margin-bottom:8px;-webkit-overflow-scrolling:touch}
+.quicknav::-webkit-scrollbar{display:none}
+.qchip{flex-shrink:0;display:flex;align-items:center;gap:7px;background:var(--card);border:1px solid rgba(255,255,255,0.08);border-radius:22px;padding:9px 16px;font-size:12px;font-weight:700;color:var(--greyl);white-space:nowrap;transition:border-color var(--t),color var(--t),background var(--t)}
+.qchip:hover{border-color:var(--gold);color:var(--gold);background:var(--golddim)}
+.qchip .qc-emoji{font-size:15px}
+
+/* Details/summary — ingredientes y modo de uso, sin saturar la tarjeta */
+.pdetails{margin-bottom:16px;border:1px solid rgba(255,255,255,0.07);border-radius:10px;overflow:hidden;background:rgba(255,255,255,0.02)}
+.pdetails summary{padding:12px 14px;font-size:12px;font-weight:700;color:var(--gold);cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between}
+.pdetails summary::-webkit-details-marker{display:none}
+.pdetails summary::after{content:'+';font-size:16px;color:var(--grey)}
+.pdetails[open] summary::after{content:'−'}
+.pdetails-body{padding:0 14px 14px;font-size:12px;color:var(--greyl);line-height:1.6}
+.pdetails-body b{color:var(--white)}
+
 /* ── CART DRAWER ── */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:300;opacity:0;pointer-events:none;transition:opacity var(--t)}
 .overlay.show{opacity:1;pointer-events:all}
@@ -434,10 +450,17 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
   <h2 class="sec-title reveal d1">Elige tu fórmula</h2>
   <p class="sec-sub reveal d2">Cada producto tiene un propósito específico. Compara y elige el que se adapta a tu objetivo.</p>
 
+  <div class="quicknav reveal d2">
+    <a href="#prod-testopower" class="qchip"><span class="qc-emoji">💊</span> TestoPower</a>
+    <a href="#prod-testogh" class="qchip"><span class="qc-emoji">🧴</span> TESTO-GH</a>
+    <a href="#prod-jjlbro" class="qchip"><span class="qc-emoji">🧪</span> JJLBRO GEL</a>
+    <a href="#prod-energysx" class="qchip"><span class="qc-emoji">⚡</span> ENERGY SX</a>
+  </div>
+
   <div class="products">
 
     <!-- TestoPower -->
-    <div class="pcard reveal d1">
+    <div class="pcard reveal d1" id="prod-testopower">
       <span class="pbadge">⭐ Más vendido</span>
       <span class="pdiscount">-29% OFF</span>
       <div class="pimg-wrap">
@@ -473,7 +496,7 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
     </div>
 
     <!-- TESTO-GH -->
-    <div class="pcard reveal d2">
+    <div class="pcard reveal d2" id="prod-testogh">
       <span class="pbadge">Pack x2</span>
       <span class="pdiscount">-33% OFF</span>
       <div class="pimg-wrap">
@@ -518,7 +541,7 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
     </div>
 
     <!-- JJLBRO GEL - Full width -->
-    <div class="pcard reveal" style="grid-column:1/-1;">
+    <div class="pcard reveal" style="grid-column:1/-1;" id="prod-jjlbro">
       <span class="pbadge">Uso Externo</span>
       <span class="pdiscount">-33% OFF</span>
 
@@ -559,6 +582,62 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
             <li>Dermatológicamente testado, apto piel sensible</li>
           </ul>
           <button class="padd-btn" onclick="addToCart('JJLBRO GEL — Extra Sensation 50ml','19.99',3)">🛒 Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENERGY SX -->
+    <div class="pcard reveal" style="grid-column:1/-1;" id="prod-energysx">
+      <span class="pbadge">Ambos sexos</span>
+      <span class="pdiscount">-30% OFF</span>
+
+      <div style="display:grid;grid-template-columns:1fr;gap:0;" id="energysx-grid">
+        <div class="pimg-wrap" style="height:280px;background:linear-gradient(160deg,#0d0d0d,#141410);">
+          <svg class="pvisual-svg" width="130" height="230" viewBox="0 0 130 230" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="65" cy="218" rx="38" ry="7" fill="#000" opacity="0.4"/>
+            <path d="M22 24 L108 24 L112 40 L112 195 Q112 210 96 210 L34 210 Q18 210 18 195 L18 40 Z" fill="#111311" stroke="#D4AF37" stroke-width="1.5"/>
+            <rect x="18" y="24" width="94" height="14" fill="#D4AF37"/>
+            <path d="M40 70 L90 70 L90 150 L65 175 L40 150 Z" fill="none" stroke="#D4AF37" stroke-width="2"/>
+            <path d="M65 85 L58 100 L50 98 M65 85 L72 100 L80 98 M65 85 L65 105" stroke="#D4AF37" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+            <circle cx="65" cy="112" r="4" fill="none" stroke="#D4AF37" stroke-width="1.3"/>
+            <text x="65" y="52" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="800" fill="#fff" letter-spacing="1">ENERGY</text>
+            <text x="65" y="140" text-anchor="middle" font-family="Inter,sans-serif" font-size="16" font-weight="800" fill="#D4AF37">SX</text>
+            <text x="65" y="195" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#B4BBB9">500 ML · LIMÓN</text>
+          </svg>
+        </div>
+        <div class="pbody">
+          <div class="pcategory">Potenciador sexual · Uso diario</div>
+          <div class="pname">ENERGY SX</div>
+          <div class="pstars"><span class="stars-ico">★★★★★</span><span class="stars-num">4.7</span><span class="stars-count">(674 opiniones)</span></div>
+          <div class="ppres">500 ml · Sabor limón</div>
+          <div class="pprice-row">
+            <div class="pprice">$27.99</div>
+            <div class="pprice-old">$39.99</div>
+            <div class="psave">Ahorras $12</div>
+          </div>
+
+          <div class="picon-strip">
+            <div class="picon"><span class="picon-emoji">🔥</span><span class="picon-txt">Más deseo y excitación</span></div>
+            <div class="picon"><span class="picon-emoji">💪</span><span class="picon-txt">Erección firme y duradera</span></div>
+            <div class="picon"><span class="picon-emoji">👫</span><span class="picon-txt">Para ambos sexos</span></div>
+          </div>
+
+          <ul class="pbullets" style="margin-bottom:14px;">
+            <li>Fórmula diaria con ingredientes naturales premium</li>
+            <li>Mejora el flujo sanguíneo en zonas erógenas</li>
+            <li>Erección completa y más duradera</li>
+            <li>Apto para hombres y mujeres</li>
+          </ul>
+
+          <details class="pdetails">
+            <summary>Composición y modo de uso</summary>
+            <div class="pdetails-body">
+              <b>Composición:</b> Sulfato ferroso, sorbitol al 70%, propilenglicol, ginseng, sabor caramelo, vitamina C, vitamina B1, B2, B6, B3, ácido fólico, estevia, agua purificada.<br><br>
+              <b>Modo de uso:</b> Producto para adultos. Tomar una (1) cucharada de 10 ml al día.
+            </div>
+          </details>
+
+          <button class="padd-btn" onclick="addToCart('ENERGY SX — 500ml sabor limón','27.99',4)">🛒 Agregar al carrito</button>
         </div>
       </div>
     </div>
@@ -759,7 +838,7 @@ const WA = '593960702682';
 let cart = [];
 
 // ── ADD TO CART ──
-const PRODUCT_ICONS = {0:'💊',1:'🧴',3:'🧪'};
+const PRODUCT_ICONS = {0:'💊',1:'🧴',3:'🧪',4:'⚡'};
 function addToCart(name, priceStr, imgIdx) {
   const price = parseFloat(priceStr);
   const icon = PRODUCT_ICONS[imgIdx] || '📦';
@@ -1061,14 +1140,16 @@ function initPayPal(amount, product) {
   }
 }
 
-// ── JJLBRO DESKTOP GRID ──
-function updateJJGrid(){
-  const g=document.getElementById('jjlbro-grid');
-  if(!g) return;
-  g.style.gridTemplateColumns = window.innerWidth>=700 ? '1fr 1fr' : '1fr';
+// ── FULL-WIDTH CARD DESKTOP GRID (JJLBRO + ENERGY SX) ──
+function updateWideGrids(){
+  ['jjlbro-grid','energysx-grid'].forEach(id=>{
+    const g=document.getElementById(id);
+    if(!g) return;
+    g.style.gridTemplateColumns = window.innerWidth>=700 ? '1fr 1fr' : '1fr';
+  });
 }
-updateJJGrid();
-window.addEventListener('resize',updateJJGrid,{passive:true});
+updateWideGrids();
+window.addEventListener('resize',updateWideGrids,{passive:true});
 
 updateCart();
 </script>
