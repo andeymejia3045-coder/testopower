@@ -276,11 +276,22 @@ section{padding:72px 20px}
 .order-summary strong{color:var(--white);font-size:14px}
 .order-summary span{color:var(--gold);font-weight:800;font-size:18px}
 .pay-opts{display:flex;flex-direction:column;gap:10px}
-.payopt{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 14px;cursor:pointer;transition:border-color var(--t),background var(--t)}
-.payopt:hover,.payopt.sel{border-color:var(--gold);background:var(--golddim)}
-.payopt-ico{font-size:22px;width:42px;height:42px;background:rgba(255,255,255,0.04);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.payopt strong{display:block;font-size:14px;color:var(--white);margin-bottom:1px}
+.payopt{position:relative;display:flex;align-items:center;gap:14px;background:rgba(255,255,255,0.03);border:2px solid rgba(255,255,255,0.09);border-radius:14px;padding:15px 16px 15px 14px;cursor:pointer;transition:border-color var(--t),background var(--t),box-shadow var(--t)}
+.payopt:hover{border-color:rgba(31,174,114,0.5);background:rgba(255,255,255,0.05)}
+.payopt.sel{border-color:var(--gold);background:var(--golddim);box-shadow:0 6px 20px rgba(31,174,114,0.18)}
+.payopt-ico{font-size:24px;width:46px;height:46px;background:rgba(255,255,255,0.06);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background var(--t)}
+.payopt.sel .payopt-ico{background:var(--gold);color:#04120C}
+.payopt strong{display:block;font-size:15px;color:var(--white);margin-bottom:2px}
 .payopt span{font-size:12px;color:var(--grey)}
+.payopt-check{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:50%;border:2px solid rgba(255,255,255,0.18);flex-shrink:0;transition:border-color var(--t),background var(--t)}
+.payopt.sel .payopt-check{border-color:var(--gold);background:var(--gold)}
+.payopt.sel .payopt-check::after{content:'✓';display:flex;align-items:center;justify-content:center;height:100%;color:#04120C;font-size:14px;font-weight:900}
+
+/* Shipping / insurance trust strip under payment options */
+.ship-trust{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.ship-trust-item{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 13px;font-size:11px;color:var(--greyl);flex:1;min-width:150px}
+.ship-trust-item .sti-ico{font-size:18px;flex-shrink:0}
+.ship-trust-item b{display:block;color:var(--white);font-size:12px;margin-bottom:1px}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:480px){.form-grid{grid-template-columns:1fr}}
 .fg{display:flex;flex-direction:column;gap:5px}
@@ -445,7 +456,7 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
       <div class="stat"><span class="stat-num">100%</span><span class="stat-lbl">natural</span></div>
     </div>
     <div class="hero-promos">
-      <div class="promo-chip">🚚 <b>Envío gratis</b> desde $30</div>
+      <div class="promo-chip">🚚 <b>Envío gratis</b> en todos los pedidos</div>
       <div class="promo-chip">🎁 <b>2X1</b> en TESTO-GH</div>
     </div>
   </div>
@@ -455,7 +466,7 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
       <span class="badge-2x1-num">2X1</span>
       <span class="badge-2x1-txt">EN TESTO-GH<br>PACK DOBLE</span>
     </a>
-    <div class="hero-ship-badge">🚚 Envío gratis desde $30</div>
+    <div class="hero-ship-badge">🚚 Envío gratis en todos los pedidos</div>
   </div>
 </section>
 
@@ -708,9 +719,14 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
     <div>
       <div class="order-step-lbl"><span class="step-num">2</span> Método de pago</div>
       <div class="pay-opts">
-        <div class="payopt" data-pay="transferencia"><div class="payopt-ico">🏦</div><div><strong>Transferencia bancaria</strong><span>Te enviamos los datos por WhatsApp</span></div></div>
-        <div class="payopt" data-pay="contra-entrega"><div class="payopt-ico">📦</div><div><strong>Contra entrega</strong><span>Pagas cuando recibes tu pedido</span></div></div>
+        <div class="payopt" data-pay="transferencia"><div class="payopt-ico">🏦</div><div><strong>Transferencia bancaria</strong><span>Te enviamos los datos por WhatsApp</span></div><div class="payopt-check"></div></div>
+        <div class="payopt" data-pay="contra-entrega"><div class="payopt-ico">📦</div><div><strong>Contra entrega</strong><span>Pagas cuando recibes tu pedido</span></div><div class="payopt-check"></div></div>
         <div class="payopt" style="opacity:0.5;cursor:not-allowed;pointer-events:none;"><div class="payopt-ico">💳</div><div><strong>Tarjeta</strong><span>Próximamente disponible</span></div></div>
+      </div>
+      <div class="ship-trust">
+        <div class="ship-trust-item"><span class="sti-ico">🚚</span><div><b>Envío courier</b>A todo Ecuador con seguimiento</div></div>
+        <div class="ship-trust-item"><span class="sti-ico">🛡️</span><div><b>Compra protegida</b>Reembolso si no llega tu pedido</div></div>
+        <div class="ship-trust-item"><span class="sti-ico">🔒</span><div><b>Datos cifrados</b>Tu información nunca se comparte</div></div>
       </div>
     </div>
 
