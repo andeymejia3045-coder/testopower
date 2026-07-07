@@ -160,6 +160,16 @@ section{padding:72px 20px}
 .pvisual-svg{filter:drop-shadow(0 14px 22px rgba(0,0,0,0.55));transition:transform var(--t)}
 .pcard:hover .pvisual-svg{transform:translateY(-3px) scale(1.04)}
 
+/* Real product photo gallery */
+.pimg-wrap.real-photo{background:linear-gradient(160deg,#f2f1ea,#e4e2d6);padding:14px}
+.pimg-wrap.real-photo img{max-height:100%;max-width:100%;object-fit:contain;filter:drop-shadow(0 10px 18px rgba(0,0,0,0.25));transition:opacity .2s}
+.pimg-col{display:flex;flex-direction:column}
+.pthumbs{display:flex;gap:8px;padding:10px 4px 0;flex-wrap:wrap}
+.pthumb{width:52px;height:52px;border-radius:9px;overflow:hidden;border:2px solid rgba(255,255,255,0.1);cursor:pointer;background:#f2f1ea;flex-shrink:0;transition:border-color var(--t)}
+.pthumb img{width:100%;height:100%;object-fit:cover}
+.pthumb:hover{border-color:rgba(31,174,114,0.5)}
+.pthumb.active{border-color:var(--gold)}
+
 .pbody{padding:20px 18px 22px}
 .pcategory{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px}
 .pname{font-size:24px;font-weight:800;letter-spacing:-0.02em;color:var(--white);margin-bottom:2px;line-height:1.1}
@@ -501,17 +511,8 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
     <div class="pcard reveal d1" id="prod-testopower">
       <span class="pbadge">⭐ Más vendido</span>
       <span class="pdiscount">-29% OFF</span>
-      <div class="pimg-wrap">
-        <svg class="pvisual-svg" width="120" height="150" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="60" cy="140" rx="34" ry="6" fill="#000" opacity="0.35"/>
-          <rect x="26" y="30" width="68" height="100" rx="10" fill="#1B2320" stroke="#1FAE72" stroke-width="1.5"/>
-          <rect x="26" y="30" width="68" height="26" rx="10" fill="#1FAE72"/>
-          <rect x="34" y="12" width="52" height="20" rx="4" fill="#0E1412" stroke="#2BC684" stroke-width="1.5"/>
-          <rect x="34" y="64" width="52" height="50" rx="4" fill="#0E1412"/>
-          <text x="60" y="83" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="800" fill="#2BC684">TESTO</text>
-          <text x="60" y="98" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#fff">POWER</text>
-          <text x="60" y="110" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" fill="#808988">30 CAPS</text>
-        </svg>
+      <div class="pimg-wrap real-photo">
+        <img id="img0" src="26f5826f-21d4-487e-bc62-8cf8af09895e.jpg" alt="TestoPower 30 cápsulas Maca Negra L-Arginina Zinc">
       </div>
       <div class="pbody">
         <div class="pcategory">Cápsula · Fórmula Maca + Zinc</div>
@@ -537,8 +538,15 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
     <div class="pcard reveal d2" id="prod-testogh">
       <span class="pbadge-2x1">2X1<small>Pack doble</small></span>
       <span class="pdiscount">-33% OFF</span>
-      <div class="pimg-wrap" style="height:auto;padding:0;background:#0B1E33;">
-        <img src="image.png" alt="TESTO-GH pack 2x1 aumenta testosterona" style="width:100%;max-height:none;max-width:100%;object-fit:cover;">
+      <div class="pimg-col">
+        <div class="pimg-wrap real-photo">
+          <img id="img1" src="100d2054-726c-43d6-b5f4-b728f74bcef6.jpg" alt="TESTO-GH multivitamínico 60 cápsulas">
+        </div>
+        <div class="pthumbs">
+          <div class="pthumb active" onclick="swapImg('img1','100d2054-726c-43d6-b5f4-b728f74bcef6.jpg',this)"><img src="100d2054-726c-43d6-b5f4-b728f74bcef6.jpg" alt="TESTO-GH frasco"></div>
+          <div class="pthumb" onclick="swapImg('img1','image.png',this)"><img src="image.png" alt="TESTO-GH banner beneficios"></div>
+          <div class="pthumb" onclick="swapImg('img1','fdb4ca51-1a0b-49ed-80dc-55e447585f64.jpg',this)"><img src="fdb4ca51-1a0b-49ed-80dc-55e447585f64.jpg" alt="TESTO-GH promoción 2x1"></div>
+        </div>
       </div>
       <div class="pbody">
         <div class="pcategory">Cápsula · Multivitamínico</div>
@@ -566,16 +574,16 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
       <span class="pdiscount">-33% OFF</span>
 
       <div style="display:grid;grid-template-columns:1fr;gap:0;" id="jjlbro-grid">
-        <div class="pimg-wrap" style="height:260px;">
-          <svg class="pvisual-svg" width="110" height="190" viewBox="0 0 110 190" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="55" cy="180" rx="30" ry="6" fill="#000" opacity="0.35"/>
-            <path d="M35 40 Q35 20 55 20 Q75 20 75 40 L78 160 Q78 175 55 175 Q32 175 32 160 Z" fill="#171D1B" stroke="#1FAE72" stroke-width="1.5"/>
-            <rect x="42" y="8" width="26" height="18" rx="4" fill="#1FAE72"/>
-            <rect x="35" y="70" width="40" height="60" rx="6" fill="#0E1412"/>
-            <text x="55" y="92" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="800" fill="#2BC684">JJLBRO</text>
-            <text x="55" y="106" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="700" fill="#fff">GEL</text>
-            <text x="55" y="120" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" fill="#808988">50ML</text>
-          </svg>
+        <div class="pimg-col">
+          <div class="pimg-wrap real-photo" style="height:260px;">
+            <img id="img3" src="3a5cd14a-fea3-45f1-8f58-5a06fd425254.jpg" alt="JJLBRO GEL tubo y caja Extra Sensation">
+          </div>
+          <div class="pthumbs">
+            <div class="pthumb active" onclick="swapImg('img3','3a5cd14a-fea3-45f1-8f58-5a06fd425254.jpg',this)"><img src="3a5cd14a-fea3-45f1-8f58-5a06fd425254.jpg" alt="JJLBRO tubo y caja"></div>
+            <div class="pthumb" onclick="swapImg('img3','82c94f8a-a17b-44f3-a508-701ce3bf0915.jpg',this)"><img src="82c94f8a-a17b-44f3-a508-701ce3bf0915.jpg" alt="JJLBRO sensibilidad y placer"></div>
+            <div class="pthumb" onclick="swapImg('img3','6862f734-26a0-4ecb-875e-ea1c1b82a16b.jpg',this)"><img src="6862f734-26a0-4ecb-875e-ea1c1b82a16b.jpg" alt="JJLBRO certificaciones"></div>
+            <div class="pthumb" onclick="swapImg('img3','9e817de3-ce25-4a61-ad7a-837bc0abf2ed.jpg',this)"><img src="9e817de3-ce25-4a61-ad7a-837bc0abf2ed.jpg" alt="JJLBRO crecimiento visible"></div>
+          </div>
         </div>
         <div class="pbody">
           <div class="pcategory">Gel uso externo · Efecto visible</div>
@@ -612,18 +620,15 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
       <span class="pdiscount">-30% OFF</span>
 
       <div style="display:grid;grid-template-columns:1fr;gap:0;" id="energysx-grid">
-        <div class="pimg-wrap" style="height:280px;background:linear-gradient(160deg,#0d0d0d,#141410);">
-          <svg class="pvisual-svg" width="130" height="230" viewBox="0 0 130 230" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="65" cy="218" rx="38" ry="7" fill="#000" opacity="0.4"/>
-            <path d="M22 24 L108 24 L112 40 L112 195 Q112 210 96 210 L34 210 Q18 210 18 195 L18 40 Z" fill="#111311" stroke="#D4AF37" stroke-width="1.5"/>
-            <rect x="18" y="24" width="94" height="14" fill="#D4AF37"/>
-            <path d="M40 70 L90 70 L90 150 L65 175 L40 150 Z" fill="none" stroke="#D4AF37" stroke-width="2"/>
-            <path d="M65 85 L58 100 L50 98 M65 85 L72 100 L80 98 M65 85 L65 105" stroke="#D4AF37" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-            <circle cx="65" cy="112" r="4" fill="none" stroke="#D4AF37" stroke-width="1.3"/>
-            <text x="65" y="52" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="800" fill="#fff" letter-spacing="1">ENERGY</text>
-            <text x="65" y="140" text-anchor="middle" font-family="Inter,sans-serif" font-size="16" font-weight="800" fill="#D4AF37">SX</text>
-            <text x="65" y="195" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#B4BBB9">500 ML · LIMÓN</text>
-          </svg>
+        <div class="pimg-col">
+          <div class="pimg-wrap real-photo" style="height:280px;">
+            <img id="img4" src="8aa45e11-4cec-4552-aebd-2c513f924108.jpg" alt="ENERGY SX caja 500ml sabor limón">
+          </div>
+          <div class="pthumbs">
+            <div class="pthumb active" onclick="swapImg('img4','8aa45e11-4cec-4552-aebd-2c513f924108.jpg',this)"><img src="8aa45e11-4cec-4552-aebd-2c513f924108.jpg" alt="ENERGY SX caja"></div>
+            <div class="pthumb" onclick="swapImg('img4','afabeaed-e75c-43bf-be5a-937d1fce09f7.jpg',this)"><img src="afabeaed-e75c-43bf-be5a-937d1fce09f7.jpg" alt="ENERGY SX energía extrema"></div>
+            <div class="pthumb" onclick="swapImg('img4','f9d29750-7c23-467a-a48f-23dbba276743.jpg',this)"><img src="f9d29750-7c23-467a-a48f-23dbba276743.jpg" alt="ENERGY SX potenciador sexual frasco"></div>
+          </div>
         </div>
         <div class="pbody">
           <div class="pcategory">Potenciador sexual · Uso diario</div>
@@ -858,6 +863,16 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
 
 <script>
 const WA = '593960702682';
+
+// ── PRODUCT PHOTO GALLERY SWAP ──
+function swapImg(imgId, src, thumbEl) {
+  const img = document.getElementById(imgId);
+  if (img) img.src = src;
+  if (thumbEl) {
+    thumbEl.parentElement.querySelectorAll('.pthumb').forEach(t => t.classList.remove('active'));
+    thumbEl.classList.add('active');
+  }
+}
 
 // ── CART STATE ──
 let cart = [];
