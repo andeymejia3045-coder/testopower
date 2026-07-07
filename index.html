@@ -750,7 +750,7 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
 </div>
 
 <!-- Card payment SDK (client-id only, never expose the Secret here) -->
-<script src="https://www.paypal.com/sdk/js?client-id=ARrx542LuFUHoRqbGlv0wTuWgFzlOW4JJs8FYMkC0qRyu_PdW7G7iYcDV_N6rBb20pCGzyIzkl6yteY3&currency=USD&disable-funding=paypal,paylater,venmo&enable-funding=card&components=buttons" data-csp-nonce=""></script>
+<script src="https://www.paypal.com/sdk/js?client-id=ARrx542LuFUHoRqbGlv0wTuWgFzlOW4JJs8FYMkC0qRyu_PdW7G7iYcDV_N6rBb20pCGzyIzkl6yteY3&currency=USD&disable-funding=paypal,paylater,venmo&enable-funding=card&components=buttons"></script>
 
 <script>
 const WA = '593960702682';
@@ -1032,12 +1032,11 @@ function initPayPal(amount, product) {
   const container = document.getElementById('paypal-btn-container');
   const loading = document.getElementById('pp-loading');
   if (typeof paypal==='undefined') {
-    loading.innerHTML='<div style="background:rgba(224,92,58,0.1);border:1px solid rgba(224,92,58,0.3);border-radius:10px;padding:14px;text-align:center;font-size:13px;color:#e05c3a;">⚙️ Activa el Client ID correcto en el código para habilitar pagos con tarjeta.</div>';
+    loading.innerHTML='<div style="background:rgba(224,92,58,0.1);border:1px solid rgba(224,92,58,0.3);border-radius:10px;padding:14px;text-align:center;font-size:13px;color:#e05c3a;">⚙️ No se pudo cargar la pasarela. Revisa el Client ID.</div>';
     return;
   }
-  loading.style.display='none';
-  ppRendered=true;
-  paypal.Buttons({
+  ppRendered = true;
+  const cardButtons = paypal.Buttons({
     style:{layout:'vertical',color:'black',shape:'rect',label:'pay',height:48},
     fundingSource: paypal.FUNDING.CARD,
     createOrder:(data,actions)=>actions.order.create({
@@ -1061,7 +1060,14 @@ function initPayPal(amount, product) {
     }),
     onError:(err)=>{console.error(err); loading.style.display='block'; loading.innerHTML='<div style="color:#e05c3a;font-size:13px;text-align:center;padding:10px;">⚠️ Error al procesar. Intenta de nuevo.</div>';},
     onCancel:()=>{ppModal.classList.remove('show');document.body.style.overflow='';}
-  }).render('#paypal-btn-container');
+  });
+
+  if (cardButtons.isEligible()) {
+    loading.style.display='none';
+    cardButtons.render('#paypal-btn-container');
+  } else {
+    loading.innerHTML='<div style="background:rgba(224,92,58,0.1);border:1px solid rgba(224,92,58,0.3);border-radius:10px;padding:14px;text-align:center;font-size:12px;color:#e05c3a;line-height:1.5;">⚠️ Esta cuenta aún no tiene habilitado el pago con tarjeta sin cuenta. Activa "Advanced Credit and Debit Card Payments" en tu panel de PayPal Business.</div>';
+  }
 }
 
 // ── JJLBRO DESKTOP GRID ──
