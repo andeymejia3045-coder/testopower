@@ -102,6 +102,21 @@ nav.desk a:hover{color:var(--gold)}
 .stat-lbl{font-size:11px;color:var(--grey);font-weight:500}
 @keyframes fadeup{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
+/* Hero promos — fill the empty space + push key offers */
+.hero-promos{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;opacity:0;animation:fadeup 0.7s 0.85s ease forwards}
+.promo-chip{display:flex;align-items:center;gap:7px;background:var(--card);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:9px 15px;font-size:12px;color:var(--greyl);font-weight:600}
+.promo-chip b{color:var(--gold)}
+
+.hero-side{display:none}
+@media(min-width:1000px){
+  .hero-side{display:flex;position:absolute;right:7%;top:50%;transform:translateY(-50%);z-index:2;flex-direction:column;align-items:center;gap:22px}
+  .hero-2x1-badge{width:180px;height:180px;border-radius:50%;background:radial-gradient(circle at 32% 30%,var(--gold2),var(--gold));display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 24px 55px rgba(31,174,114,0.4);transform:rotate(-8deg);transition:transform var(--t)}
+  .hero-2x1-badge:hover{transform:rotate(0deg) scale(1.05)}
+  .badge-2x1-num{font-size:42px;font-weight:900;color:#04120C;line-height:1;letter-spacing:-0.02em}
+  .badge-2x1-txt{font-size:11px;font-weight:800;color:#04120C;margin-top:5px;line-height:1.35}
+  .hero-ship-badge{background:var(--card);border:1px solid var(--goldborder);border-radius:30px;padding:11px 22px;font-size:12px;font-weight:700;color:var(--white);display:flex;align-items:center;gap:7px;white-space:nowrap}
+}
+
 /* ── SECTION ── */
 section{padding:72px 20px}
 .sec-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:10px}
@@ -130,6 +145,9 @@ section{padding:72px 20px}
 .pbadge{position:absolute;top:14px;left:14px;z-index:3;background:var(--gold);color:#04120C;font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:0.06em;text-transform:uppercase}
 
 .pdiscount{position:absolute;top:14px;right:14px;z-index:3;background:var(--red);color:#fff;font-size:10px;font-weight:800;padding:4px 9px;border-radius:20px}
+
+.pbadge-2x1{position:absolute;top:12px;left:12px;z-index:3;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#04120C;font-size:20px;font-weight:900;padding:9px 16px;border-radius:14px;letter-spacing:-0.02em;box-shadow:0 10px 26px rgba(31,174,114,0.45);line-height:1;transform:rotate(-4deg)}
+.pbadge-2x1 small{display:block;font-size:8px;font-weight:800;letter-spacing:0.08em;margin-top:2px;text-transform:uppercase}
 
 .pimg-wrap{height:220px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(160deg,#0F1414,#111A17)}
 
@@ -295,9 +313,6 @@ section{padding:72px 20px}
 .modal-amount{background:var(--golddim);border:1px solid var(--goldborder);border-radius:11px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
 .modal-amount span{font-size:13px;color:var(--greyl)}
 .modal-amount strong{font-size:24px;font-weight:800;color:var(--gold)}
-.card-fields{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
-#card-btn-container{min-height:50px}
-#card-loading{text-align:center;padding:18px 0;color:var(--grey);font-size:13px}
 .modal-secure{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:14px;font-size:11px;color:var(--grey)}
 .modal-cards{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.06)}
 .modal-cards span{background:rgba(255,255,255,0.06);border-radius:6px;padding:5px 9px;font-size:11px;font-weight:700;color:var(--greyl);letter-spacing:0.03em}
@@ -429,6 +444,18 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
       <div class="stat"><span class="stat-num">1–2 días</span><span class="stat-lbl">envío discreto</span></div>
       <div class="stat"><span class="stat-num">100%</span><span class="stat-lbl">natural</span></div>
     </div>
+    <div class="hero-promos">
+      <div class="promo-chip">🚚 <b>Envío gratis</b> desde $30</div>
+      <div class="promo-chip">🎁 <b>2X1</b> en TESTO-GH</div>
+    </div>
+  </div>
+
+  <div class="hero-side">
+    <a href="#prod-testogh" class="hero-2x1-badge">
+      <span class="badge-2x1-num">2X1</span>
+      <span class="badge-2x1-txt">EN TESTO-GH<br>PACK DOBLE</span>
+    </a>
+    <div class="hero-ship-badge">🚚 Envío gratis desde $30</div>
   </div>
 </section>
 
@@ -497,7 +524,7 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
 
     <!-- TESTO-GH -->
     <div class="pcard reveal d2" id="prod-testogh">
-      <span class="pbadge">Pack x2</span>
+      <span class="pbadge-2x1">2X1<small>Pack doble</small></span>
       <span class="pdiscount">-33% OFF</span>
       <div class="pimg-wrap">
         <svg class="pvisual-svg" width="150" height="150" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
@@ -522,7 +549,7 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
       </div>
       <div class="pbody">
         <div class="pcategory">Cápsula · Multivitamínico</div>
-        <div class="pname">TESTO-GH</div>
+        <div class="pname">TESTO-GH <span style="color:var(--gold);font-size:15px;">· Promo 2X1</span></div>
         <div class="pstars"><span class="stars-ico">★★★★★</span><span class="stars-num">4.6</span><span class="stars-count">(513 opiniones)</span></div>
         <div class="ppres">Pack x2 frascos · 60 cápsulas c/u</div>
         <div class="pprice-row">
@@ -771,7 +798,7 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
   </div>
   <div class="foot-divider"></div>
   <div class="foot-bottom">
-    <p class="foot-copy">© 2025 <b>TestoPower</b> · Todos los derechos reservados.</p>
+    <p class="foot-copy">© 2026 <b>TestoPower</b> · Todos los derechos reservados.</p>
     <div class="foot-legal"><a href="#">Privacidad</a><a href="#">Términos</a><a href="#">Devoluciones</a></div>
   </div>
 </footer>
