@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>TestoPower — Bienestar Masculino</title>
+<meta name="description" content="Suplementos para el bienestar masculino. Compra discreta, envíos en 1-2 días.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A0D0F;
+  --bg2:#0E1214;
+  --bg3:#141819;
+  --card:#181D1F;
+  --gold:#1FAE72;
+  --gold2:#2BC684;
+  --golddim:rgba(31,174,114,0.12);
+  --goldborder:rgba(31,174,114,0.28);
+  --white:#FFFFFF;
+  --grey:#808988;
+  --greyl:#B4BBB9;
+  --red:#E5484D;
+  --redborder:rgba(229,72,77,0.25);
+  --reddim:rgba(229,72,77,0.08);
+  --font:'Inter',-apple-system,sans-serif;
+  --r:14px;
+  --t:0.25s ease;
+}
+html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--white);font-family:var(--font);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:var(--font);cursor:pointer;border:none;outline:none}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--goldborder);border-radius:2px}
+
+/* ── HEADER ── */
+header{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;padding:0 18px}
+.logo{font-size:20px;font-weight:800;letter-spacing:-0.02em;color:var(--white)}
+.logo span{color:var(--gold)}
+.header-actions{display:flex;align-items:center;gap:10px}
+.cart-btn{position:relative;background:var(--card);border:1px solid rgba(255,255,255,0.08);border-radius:10px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;font-size:18px;transition:border-color var(--t)}
+.cart-btn:hover{border-color:var(--goldborder)}
+.cart-count{position:absolute;top:-5px;right:-5px;background:var(--gold);color:#04120C;font-size:10px;font-weight:800;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity var(--t)}
+.cart-count.show{opacity:1}
+.hdr-buy{background:var(--gold);color:#04120C;border-radius:10px;padding:10px 16px;font-size:13px;font-weight:700;letter-spacing:0.02em;display:none}
+@media(min-width:600px){.hdr-buy{display:flex;align-items:center;gap:5px}}
+
+/* NAV DESKTOP */
+nav.desk{display:none;gap:28px;list-style:none}
+@media(min-width:900px){nav.desk{display:flex}}
+nav.desk a{font-size:13px;color:var(--greyl);font-weight:500;transition:color var(--t)}
+nav.desk a:hover{color:var(--gold)}
+
+/* HAMBURGER */
+.ham{display:flex;flex-direction:column;gap:5px;background:none;padding:6px}
+.ham span{width:20px;height:2px;background:var(--greyl);border-radius:2px;transition:var(--t);display:block}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--gold)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--gold)}
+@media(min-width:900px){.ham{display:none}}
+
+/* MOBILE MENU */
+.mob-menu{position:fixed;top:60px;left:0;right:0;bottom:0;background:rgba(10,10,10,0.98);backdrop-filter:blur(30px);z-index:199;flex-direction:column;padding:36px 24px;gap:6px;transform:translateX(100%);transition:transform 0.38s cubic-bezier(0.4,0,0.2,1);display:flex}
+.mob-menu.open{transform:translateX(0)}
+.mob-menu a{font-size:26px;font-weight:700;color:var(--white);padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);transition:color var(--t)}
+.mob-menu a:hover{color:var(--gold)}
+.mob-buy{background:var(--gold);color:#04120C;border-radius:12px;padding:16px;font-size:16px;font-weight:700;text-align:center;margin-top:24px}
+
+/* ── TRUST BAR ── */
+.trust-bar{background:var(--bg2);border-top:1px solid var(--goldborder);border-bottom:1px solid var(--goldborder);height:40px;overflow:hidden;position:relative}
+.trust-track{display:flex;position:absolute;top:0;left:0;height:40px;align-items:center;white-space:nowrap}
+.trust-group{display:flex;align-items:center;flex-shrink:0}
+.ti{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--greyl);padding:0 24px;border-right:1px solid rgba(255,255,255,0.06);height:40px;flex-shrink:0}
+.ti b{color:var(--gold)}
+
+/* ── HERO ── */
+#inicio{min-height:100svh;padding:80px 20px 60px;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 65% 40%,rgba(31,174,114,0.08) 0%,transparent 70%)}
+.hero-content{position:relative;z-index:2;max-width:540px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--golddim);border:1px solid var(--goldborder);border-radius:20px;padding:5px 14px;font-size:11px;font-weight:600;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:14px;opacity:0;animation:fadeup 0.7s 0.1s ease forwards}
+.hero-rating{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--greyl);margin-bottom:16px;opacity:0;animation:fadeup 0.7s 0.15s ease forwards;flex-wrap:wrap}
+.hero-rating .stars-ico{color:var(--gold);font-size:14px;letter-spacing:1px}
+.hero-rating strong{color:var(--white);font-weight:800}
+.hero-rating-sep{color:var(--grey)}
+.hero-title{font-size:clamp(34px,9vw,64px);font-weight:800;line-height:1.05;letter-spacing:-0.03em;color:var(--white);margin-bottom:16px;opacity:0;animation:fadeup 0.7s 0.25s ease forwards}
+.hero-title span{color:var(--gold)}
+.hero-sub{font-size:15px;color:var(--greyl);line-height:1.7;max-width:400px;margin-bottom:32px;opacity:0;animation:fadeup 0.7s 0.4s ease forwards}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;opacity:0;animation:fadeup 0.7s 0.55s ease forwards}
+.btn-primary{background:var(--gold);color:#04120C;border-radius:12px;padding:15px 28px;font-size:15px;font-weight:700;display:inline-flex;align-items:center;gap:8px;transition:background var(--t),transform var(--t),box-shadow var(--t);touch-action:manipulation;flex:1;min-width:140px;justify-content:center}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(31,174,114,0.35)}
+.btn-ghost{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px 24px;font-size:15px;font-weight:600;display:inline-flex;align-items:center;gap:8px;transition:all var(--t);touch-action:manipulation;flex:1;min-width:120px;justify-content:center}
+.btn-ghost:hover{border-color:var(--goldborder);color:var(--gold)}
+.hero-stats{display:flex;gap:24px;margin-top:40px;opacity:0;animation:fadeup 0.7s 0.7s ease forwards}
+.stat{display:flex;flex-direction:column}
+.stat-num{font-size:22px;font-weight:800;color:var(--white)}
+.stat-lbl{font-size:11px;color:var(--grey);font-weight:500}
+@keyframes fadeup{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION ── */
+section{padding:72px 20px}
+.sec-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:10px}
+.sec-tag::before{content:'';width:16px;height:1.5px;background:var(--gold)}
+.sec-title{font-size:clamp(28px,6vw,44px);font-weight:800;letter-spacing:-0.03em;color:var(--white);margin-bottom:10px;line-height:1.1}
+.sec-sub{font-size:14px;color:var(--grey);max-width:460px;margin-bottom:44px;line-height:1.7}
+
+/* ── BENEFITS ── */
+#beneficios{background:var(--bg2)}
+.benefits{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(min-width:768px){.benefits{grid-template-columns:repeat(4,1fr)}}
+.ben{background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:var(--r);padding:22px 16px;transition:border-color var(--t),transform var(--t)}
+.ben:hover{border-color:var(--goldborder);transform:translateY(-3px)}
+.ben-icon{font-size:26px;margin-bottom:10px}
+.ben-title{font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px}
+.ben-desc{font-size:12px;color:var(--grey);line-height:1.5}
+
+/* ── CATALOG ── */
+#catalogo{background:var(--bg)}
+.products{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:700px){.products{grid-template-columns:1fr 1fr}}
+
+.pcard{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:20px;overflow:hidden;transition:border-color var(--t),transform var(--t),box-shadow var(--t);position:relative}
+.pcard:hover{border-color:var(--goldborder);transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,0.5)}
+
+.pbadge{position:absolute;top:14px;left:14px;z-index:3;background:var(--gold);color:#04120C;font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:0.06em;text-transform:uppercase}
+
+.pdiscount{position:absolute;top:14px;right:14px;z-index:3;background:var(--red);color:#fff;font-size:10px;font-weight:800;padding:4px 9px;border-radius:20px}
+
+.pimg-wrap{height:220px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(160deg,#0F1414,#111A17)}
+
+.pstars{display:flex;align-items:center;gap:5px;margin-bottom:8px}
+.pstars .stars-ico{color:var(--gold);font-size:12px;letter-spacing:1px}
+.pstars .stars-num{font-size:12px;font-weight:700;color:var(--white)}
+.pstars .stars-count{font-size:11px;color:var(--grey)}
+.pimg-wrap img{max-height:190px;max-width:80%;object-fit:contain;filter:drop-shadow(0 12px 24px rgba(0,0,0,0.7));transition:transform var(--t)}
+.pcard:hover .pimg-wrap img{transform:scale(1.05)}
+.pimg-placeholder{font-size:64px;filter:drop-shadow(0 8px 16px rgba(0,0,0,0.5));opacity:0.9}
+
+.pbody{padding:20px 18px 22px}
+.pcategory{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px}
+.pname{font-size:24px;font-weight:800;letter-spacing:-0.02em;color:var(--white);margin-bottom:2px;line-height:1.1}
+.ppres{font-size:12px;color:var(--grey);margin-bottom:14px}
+
+.pprice-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.pprice{font-size:30px;font-weight:800;color:var(--gold);line-height:1}
+.pprice-old{font-size:16px;color:var(--grey);text-decoration:line-through;font-weight:500}
+.psave{font-size:11px;background:var(--golddim);color:var(--gold);border:1px solid var(--goldborder);border-radius:20px;padding:2px 8px;font-weight:700}
+
+.pbullets{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+.pbullets li{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--greyl);line-height:1.4}
+.pbullets li::before{content:'';width:5px;height:5px;background:var(--gold);border-radius:50%;flex-shrink:0;margin-top:5px}
+
+.padd-btn{width:100%;background:var(--gold);color:#04120C;border-radius:11px;padding:14px;font-size:14px;font-weight:700;transition:background var(--t),transform var(--t),box-shadow var(--t);touch-action:manipulation;display:flex;align-items:center;justify-content:center;gap:8px}
+.padd-btn:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 6px 20px rgba(31,174,114,0.3)}
+
+/* Visual-hook icon strip (replaces text-heavy before/after bars) */
+.picon-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.picon{background:var(--golddim);border:1px solid var(--goldborder);border-radius:10px;padding:10px 6px;text-align:center}
+.picon-emoji{font-size:20px;display:block;margin-bottom:4px}
+.picon-txt{font-size:10px;color:var(--greyl);font-weight:600;line-height:1.2}
+
+/* ── CART DRAWER ── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:300;opacity:0;pointer-events:none;transition:opacity var(--t)}
+.overlay.show{opacity:1;pointer-events:all}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(100vw,400px);background:var(--bg3);z-index:301;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column}
+.drawer.open{transform:translateX(0)}
+.drawer-head{padding:20px 20px 16px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between}
+.drawer-head h3{font-size:18px;font-weight:800;color:var(--white)}
+.close-drawer{background:rgba(255,255,255,0.06);border:none;width:34px;height:34px;border-radius:8px;color:var(--greyl);font-size:18px;display:flex;align-items:center;justify-content:center;transition:background var(--t)}
+.close-drawer:hover{background:rgba(255,255,255,0.1)}
+.drawer-items{flex:1;overflow-y:auto;padding:16px 20px}
+.cart-empty{text-align:center;padding:60px 20px;color:var(--grey)}
+.cart-empty .ei{font-size:44px;margin-bottom:12px}
+.cart-empty p{font-size:14px}
+.citem{display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+.citem-img{width:64px;height:64px;background:var(--bg2);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.citem-img img{max-width:54px;max-height:54px;object-fit:contain}
+.citem-info{flex:1}
+.citem-name{font-size:14px;font-weight:700;color:var(--white);margin-bottom:2px}
+.citem-pres{font-size:11px;color:var(--grey)}
+.citem-price{font-size:16px;font-weight:800;color:var(--gold)}
+.citem-qty{display:flex;align-items:center;gap:10px;margin-top:6px}
+.qty-btn{background:rgba(255,255,255,0.07);border:none;width:28px;height:28px;border-radius:7px;color:var(--white);font-size:16px;display:flex;align-items:center;justify-content:center;transition:background var(--t)}
+.qty-btn:hover{background:rgba(255,255,255,0.14)}
+.qty-num{font-size:14px;font-weight:700;color:var(--white);min-width:20px;text-align:center}
+.citem-del{background:none;border:none;color:var(--grey);font-size:16px;padding:4px;transition:color var(--t)}
+.citem-del:hover{color:var(--gold)}
+.drawer-footer{padding:16px 20px 24px;border-top:1px solid rgba(255,255,255,0.06)}
+.total-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.total-lbl{font-size:14px;color:var(--greyl)}
+.total-val{font-size:26px;font-weight:800;color:var(--gold)}
+.checkout-btn{width:100%;background:var(--gold);color:#04120C;border-radius:12px;padding:16px;font-size:16px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;transition:background var(--t),transform var(--t),box-shadow var(--t);touch-action:manipulation}
+.checkout-btn:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 6px 24px rgba(31,174,114,0.35)}
+.security-note{text-align:center;font-size:11px;color:var(--grey);margin-top:10px}
+
+/* ── HOW BUY ── */
+#como-comprar{background:var(--bg2)}
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(min-width:768px){.steps{grid-template-columns:repeat(4,1fr)}}
+.step{background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:var(--r);padding:22px 16px;position:relative;transition:border-color var(--t)}
+.step:hover{border-color:var(--goldborder)}
+.step-n{font-size:44px;font-weight:800;-webkit-text-stroke:1px rgba(31,174,114,0.25);color:transparent;line-height:1;margin-bottom:10px}
+.step-title{font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px}
+.step-desc{font-size:12px;color:var(--grey);line-height:1.5}
+
+/* ── PAYMENT ── */
+#pagos{background:var(--bg)}
+.pay-cards{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:600px){.pay-cards{grid-template-columns:repeat(3,1fr)}}
+.pay-card{background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:var(--r);padding:22px 18px;display:flex;align-items:center;gap:16px;transition:border-color var(--t),transform var(--t)}
+.pay-card:hover{border-color:var(--goldborder);transform:translateX(3px)}
+.pay-ico{width:50px;height:50px;background:var(--golddim);border:1px solid var(--goldborder);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.pay-name{font-size:15px;font-weight:700;color:var(--white);margin-bottom:2px}
+.pay-desc{font-size:12px;color:var(--grey)}
+
+/* ── FAQ ── */
+#preguntas{background:var(--bg2)}
+.faqs{display:flex;flex-direction:column;gap:10px}
+.faq{background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:var(--r);overflow:hidden;transition:border-color var(--t)}
+.faq.open{border-color:var(--goldborder)}
+.faq-q{width:100%;background:none;border:none;color:var(--white);font-family:var(--font);font-size:15px;font-weight:600;padding:18px 20px;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:12px;transition:color var(--t)}
+.faq.open .faq-q{color:var(--gold)}
+.faq-icon{width:22px;height:22px;border:1.5px solid rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color var(--t),transform var(--t);font-size:12px;color:var(--greyl)}
+.faq.open .faq-icon{border-color:var(--gold);transform:rotate(45deg);color:var(--gold)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.38s ease}
+.faq.open .faq-a{max-height:260px}
+.faq-a-inner{padding:0 20px 18px;font-size:14px;color:var(--greyl);line-height:1.7}
+
+/* ── ORDER / CHECKOUT ── */
+#contacto{background:var(--bg)}
+.order-box{background:var(--card);border:1px solid var(--goldborder);border-radius:20px;padding:28px 20px;display:flex;flex-direction:column;gap:24px;position:relative;overflow:hidden}
+.order-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.order-step-lbl{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--white);margin-bottom:12px}
+.step-num{width:26px;height:26px;background:var(--gold);color:#04120C;border-radius:50%;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.order-summary{background:rgba(31,174,114,0.06);border:1px solid var(--goldborder);border-radius:12px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+.order-summary strong{color:var(--white);font-size:14px}
+.order-summary span{color:var(--gold);font-weight:800;font-size:18px}
+.pay-opts{display:flex;flex-direction:column;gap:10px}
+.payopt{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 14px;cursor:pointer;transition:border-color var(--t),background var(--t)}
+.payopt:hover,.payopt.sel{border-color:var(--gold);background:var(--golddim)}
+.payopt-ico{font-size:22px;width:42px;height:42px;background:rgba(255,255,255,0.04);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.payopt strong{display:block;font-size:14px;color:var(--white);margin-bottom:1px}
+.payopt span{font-size:12px;color:var(--grey)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.form-grid{grid-template-columns:1fr}}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg.full{grid-column:1/-1}
+.flbl{font-size:12px;font-weight:600;color:var(--greyl)}
+.finp,.fsel{background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.09);border-radius:10px;color:var(--white);font-family:var(--font);font-size:16px;padding:13px 14px;outline:none;width:100%;transition:border-color var(--t);-webkit-appearance:none}
+.finp::placeholder{color:var(--grey);font-size:14px}
+.finp:focus,.fsel:focus{border-color:var(--gold);background:rgba(31,174,114,0.05)}
+.finp.err,.fsel.err{border-color:var(--red)}
+.fsel{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%23B0B0B0' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
+.fsel option{background:#1C1C1C;color:#fff}
+.info-panel{display:flex;gap:12px;align-items:flex-start;background:var(--golddim);border:1px solid var(--goldborder);border-radius:12px;padding:14px 16px}
+.info-panel-ico{font-size:22px;flex-shrink:0}
+.info-panel strong{display:block;font-size:14px;color:var(--white);margin-bottom:3px}
+.info-panel p{font-size:13px;color:var(--greyl);line-height:1.5}
+.ferr{background:rgba(224,92,58,0.1);border:1px solid rgba(224,92,58,0.35);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--red);display:none}
+.confirm-btn{background:var(--gold);color:#04120C;border-radius:12px;padding:17px;font-size:16px;font-weight:800;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;transition:background var(--t),transform var(--t),box-shadow var(--t);touch-action:manipulation}
+.confirm-btn:disabled{background:var(--card);color:var(--grey);cursor:not-allowed;box-shadow:none;transform:none}
+.confirm-btn:not(:disabled):hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 6px 24px rgba(31,174,114,0.35)}
+
+/* ── CARD PAYMENT MODAL (generic, no processor branding) ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:400;display:none;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.show{display:flex}
+.modal{background:var(--bg3);border:1px solid var(--goldborder);border-radius:20px;width:100%;max-width:400px;max-height:90vh;overflow-y:auto;padding:24px 20px;position:relative}
+.modal-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.07);border:none;width:30px;height:30px;border-radius:8px;color:var(--greyl);font-size:16px;display:flex;align-items:center;justify-content:center;transition:background var(--t)}
+.modal-close:hover{background:rgba(255,255,255,0.12)}
+.modal-tag{font-size:10px;color:var(--gold);font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6px}
+.modal-title{font-size:22px;font-weight:800;color:var(--white);margin-bottom:4px}
+.modal-product{font-size:13px;color:var(--grey);margin-bottom:18px}
+.modal-amount{background:var(--golddim);border:1px solid var(--goldborder);border-radius:11px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.modal-amount span{font-size:13px;color:var(--greyl)}
+.modal-amount strong{font-size:24px;font-weight:800;color:var(--gold)}
+.card-fields{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+#card-btn-container{min-height:50px}
+#card-loading{text-align:center;padding:18px 0;color:var(--grey);font-size:13px}
+.modal-secure{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:14px;font-size:11px;color:var(--grey)}
+.modal-cards{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.modal-cards span{background:rgba(255,255,255,0.06);border-radius:6px;padding:5px 9px;font-size:11px;font-weight:700;color:var(--greyl);letter-spacing:0.03em}
+.trust-badges{display:flex;justify-content:center;gap:18px;margin-top:16px;flex-wrap:wrap}
+.trust-badges .tb{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--grey)}
+
+/* ── SUCCESS ── */
+.success-box{text-align:center;padding:20px 10px}
+.success-ico{width:64px;height:64px;background:var(--golddim);border:2px solid var(--goldborder);border-radius:50%;font-size:28px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.success-box h3{font-size:24px;font-weight:800;color:var(--white);margin-bottom:8px}
+.success-box p{font-size:14px;color:var(--greyl);line-height:1.6;max-width:300px;margin:0 auto 20px}
+
+/* ── FOOTER ── */
+footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44px 20px 28px}
+.foot-top{display:grid;grid-template-columns:1fr;gap:32px;margin-bottom:36px}
+@media(min-width:600px){.foot-top{grid-template-columns:1.5fr 1fr 1fr}}
+.foot-logo{font-size:22px;font-weight:800;color:var(--white);margin-bottom:10px;display:block}
+.foot-logo span{color:var(--gold)}
+.foot-tagline{font-size:13px;color:var(--grey);line-height:1.6;margin-bottom:16px}
+.foot-socials{display:flex;gap:10px}
+.social{width:38px;height:38px;background:var(--card);border:1px solid rgba(255,255,255,0.07);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;transition:border-color var(--t),background var(--t)}
+.social:hover{border-color:var(--goldborder);background:var(--golddim)}
+.foot-nav-title{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--white);margin-bottom:12px}
+.foot-nav{list-style:none;display:flex;flex-direction:column;gap:8px}
+.foot-nav a{font-size:13px;color:var(--grey);transition:color var(--t)}
+.foot-nav a:hover{color:var(--gold)}
+.foot-divider{height:1px;background:rgba(255,255,255,0.05);margin-bottom:20px}
+.foot-bottom{display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center}
+.foot-copy{font-size:12px;color:var(--grey)}
+.foot-copy b{color:var(--gold)}
+.foot-legal{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.foot-legal a{font-size:12px;color:var(--grey);transition:color var(--t)}
+.foot-legal a:hover{color:var(--white)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.vis{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="hdr">
+  <a href="#inicio" class="logo">Testo<span>Power</span></a>
+  <nav class="desk">
+    <a href="#inicio">Inicio</a>
+    <a href="#catalogo">Catálogo</a>
+    <a href="#preguntas">FAQ</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  <div class="header-actions">
+    <button class="cart-btn" id="cartBtn" aria-label="Carrito">
+      🛒
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <a href="#catalogo" class="hdr-buy">Comprar ahora →</a>
+    <button class="ham" id="ham"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <a href="#inicio" class="mlink">Inicio</a>
+  <a href="#catalogo" class="mlink">Catálogo</a>
+  <a href="#preguntas" class="mlink">Preguntas frecuentes</a>
+  <a href="#contacto" class="mlink">Contacto</a>
+  <a href="#catalogo" class="mob-buy mlink">Comprar ahora →</a>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar" style="margin-top:60px" aria-hidden="true">
+  <div class="trust-track" id="trustTrack">
+    <div class="trust-group" id="trustG1">
+      <div class="ti">🔒 <b>Compra discreta</b></div>
+      <div class="ti">🚚 <b>Envío 1–2 días</b></div>
+      <div class="ti">🌿 <b>Ingredientes naturales</b></div>
+      <div class="ti">✅ <b>Normas BPM</b></div>
+      <div class="ti">💳 <b>3 métodos de pago</b></div>
+      <div class="ti">⭐ <b>Atención personalizada</b></div>
+      <div class="ti">📏 <b>Resultados visibles</b></div>
+    </div>
+    <div class="trust-group" id="trustG2">
+      <div class="ti">🔒 <b>Compra discreta</b></div>
+      <div class="ti">🚚 <b>Envío 1–2 días</b></div>
+      <div class="ti">🌿 <b>Ingredientes naturales</b></div>
+      <div class="ti">✅ <b>Normas BPM</b></div>
+      <div class="ti">💳 <b>3 métodos de pago</b></div>
+      <div class="ti">⭐ <b>Atención personalizada</b></div>
+      <div class="ti">📏 <b>Resultados visibles</b></div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Bienestar Masculino Premium</div>
+    <div class="hero-rating">
+      <span class="stars-ico">★★★★★</span>
+      <strong>4.7</strong>
+      <span class="hero-rating-sep">·</span>
+      <span>+2.400 valoraciones verificadas</span>
+    </div>
+    <h1 class="hero-title">Más energía.<br>Más confianza.<br><span>Más tú.</span></h1>
+    <p class="hero-sub">Suplementos y fórmulas de uso externo diseñados para hombres que quieren rendir al máximo. Envíos discretos en 1–2 días.</p>
+    <div class="hero-btns">
+      <a href="#catalogo" class="btn-primary">Ver productos →</a>
+      <a href="#como-comprar" class="btn-ghost">¿Cómo funciona?</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">+2.400</span><span class="stat-lbl">clientes satisfechos</span></div>
+      <div class="stat"><span class="stat-num">1–2 días</span><span class="stat-lbl">envío discreto</span></div>
+      <div class="stat"><span class="stat-num">100%</span><span class="stat-lbl">natural</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section id="beneficios">
+  <div class="reveal"><span class="sec-tag">Por qué elegirnos</span></div>
+  <h2 class="sec-title reveal d1">Lo que nos hace diferentes</h2>
+  <div class="benefits reveal d2">
+    <div class="ben"><div class="ben-icon">🔒</div><div class="ben-title">Compra discreta</div><div class="ben-desc">Embalaje neutro. Nadie sabrá qué compraste.</div></div>
+    <div class="ben"><div class="ben-icon">🚚</div><div class="ben-title">Envío 1–2 días</div><div class="ben-desc">Entrega rápida con seguimiento en tiempo real.</div></div>
+    <div class="ben"><div class="ben-icon">💳</div><div class="ben-title">3 formas de pago</div><div class="ben-desc">Tarjeta, transferencia o pago al recibir.</div></div>
+    <div class="ben"><div class="ben-icon">⭐</div><div class="ben-title">Soporte real</div><div class="ben-desc">Asesor disponible por WhatsApp siempre.</div></div>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section id="catalogo">
+  <div class="reveal"><span class="sec-tag">Productos</span></div>
+  <h2 class="sec-title reveal d1">Elige tu fórmula</h2>
+  <p class="sec-sub reveal d2">Cada producto tiene un propósito específico. Compara y elige el que se adapta a tu objetivo.</p>
+
+  <div class="products">
+
+    <!-- TestoPower -->
+    <div class="pcard reveal d1">
+      <span class="pbadge">⭐ Más vendido</span>
+      <span class="pdiscount">-29% OFF</span>
+      <div class="pimg-wrap">
+        <div class="pimg-placeholder" id="img0-ph">💊</div>
+        <img id="img0" src="" alt="TestoPower 30 cápsulas suplemento masculino" style="display:none;">
+      </div>
+      <div class="pbody">
+        <div class="pcategory">Cápsula · Fórmula Maca + Zinc</div>
+        <div class="pname">TestoPower</div>
+        <div class="pstars"><span class="stars-ico">★★★★★</span><span class="stars-num">4.7</span><span class="stars-count">(842 opiniones)</span></div>
+        <div class="ppres">30 cápsulas · 600 mg c/u</div>
+        <div class="pprice-row">
+          <div class="pprice">$24.99</div>
+          <div class="pprice-old">$34.99</div>
+          <div class="psave">Ahorras $10</div>
+        </div>
+        <ul class="pbullets">
+          <li>Vitalidad, energía y rendimiento físico</li>
+          <li>Maca negra + L-Arginina + Zinc + Vit. C</li>
+          <li>Vegano · Sin gluten · Sin OMG · BPM</li>
+          <li>Apto para diabetes e hipertensión*</li>
+        </ul>
+        <button class="padd-btn" onclick="addToCart('TestoPower — 30 cápsulas','24.99',0)">🛒 Agregar al carrito</button>
+      </div>
+    </div>
+
+    <!-- TESTO-GH -->
+    <div class="pcard reveal d2">
+      <span class="pbadge">Pack x2</span>
+      <span class="pdiscount">-33% OFF</span>
+      <div class="pimg-wrap">
+        <div class="pimg-placeholder">🧴</div>
+        <img id="img1" src="" alt="TESTO-GH 60 cápsulas multivitamínico masculino" style="display:none;">
+      </div>
+      <div class="pbody">
+        <div class="pcategory">Cápsula · Multivitamínico</div>
+        <div class="pname">TESTO-GH</div>
+        <div class="pstars"><span class="stars-ico">★★★★★</span><span class="stars-num">4.6</span><span class="stars-count">(513 opiniones)</span></div>
+        <div class="ppres">Pack x2 frascos · 60 cápsulas c/u</div>
+        <div class="pprice-row">
+          <div class="pprice">$40.00</div>
+          <div class="pprice-old">$59.98</div>
+          <div class="psave">Ahorras $20</div>
+        </div>
+        <ul class="pbullets">
+          <li>Más masa muscular y fuerza</li>
+          <li>Libido, testosterona y energía</li>
+          <li>Pre-entreno · Fórmula avanzada</li>
+          <li>2 frascos = 4 meses de tratamiento</li>
+        </ul>
+        <button class="padd-btn" onclick="addToCart('TESTO-GH — Pack x2 frascos','40.00',1)">🛒 Agregar al carrito</button>
+      </div>
+    </div>
+
+    <!-- JJLBRO GEL - Full width -->
+    <div class="pcard reveal" style="grid-column:1/-1;">
+      <span class="pbadge">Uso Externo</span>
+      <span class="pdiscount">-33% OFF</span>
+
+      <div style="display:grid;grid-template-columns:1fr;gap:0;" id="jjlbro-grid">
+        <div class="pimg-wrap" style="height:260px;">
+          <div class="pimg-placeholder">🧪</div>
+          <img id="img3" src="" alt="JJLBRO GEL uso externo masculino" style="max-height:220px;display:none;">
+        </div>
+        <div class="pbody">
+          <div class="pcategory">Gel uso externo · Efecto visible</div>
+          <div class="pname">JJLBRO GEL</div>
+          <div class="pstars"><span class="stars-ico">★★★★★</span><span class="stars-num">4.8</span><span class="stars-count">(1.205 opiniones)</span></div>
+          <div class="ppres">50 ml · Extra Sensation</div>
+          <div class="pprice-row">
+            <div class="pprice">$19.99</div>
+            <div class="pprice-old">$29.99</div>
+            <div class="psave">Ahorras $10</div>
+          </div>
+
+          <!-- Visual icon hook — communicates benefit without reading -->
+          <div class="picon-strip">
+            <div class="picon"><span class="picon-emoji">💪</span><span class="picon-txt">Más volumen</span></div>
+            <div class="picon"><span class="picon-emoji">⚡</span><span class="picon-txt">Absorción rápida</span></div>
+            <div class="picon"><span class="picon-emoji">🌿</span><span class="picon-txt">Sin parabenos</span></div>
+          </div>
+
+          <ul class="pbullets" style="margin-bottom:16px;">
+            <li>Mayor aspecto de volumen y grosor con uso regular</li>
+            <li>Erecciones más firmes — absorción en segundos</li>
+            <li>Sin parabenos · Sin sulfatos · No grasoso</li>
+            <li>Dermatológicamente testado, apto piel sensible</li>
+          </ul>
+          <button class="padd-btn" onclick="addToCart('JJLBRO GEL — Extra Sensation 50ml','19.99',3)">🛒 Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p style="font-size:11px;color:var(--grey);margin-top:16px;line-height:1.6;">*Según indicaciones del fabricante. Consulta a tu médico. Los resultados individuales pueden variar.</p>
+</section>
+
+<!-- HOW TO BUY -->
+<section id="como-comprar">
+  <div class="reveal"><span class="sec-tag">Proceso</span></div>
+  <h2 class="sec-title reveal d1">¿Cómo comprar?</h2>
+  <div class="steps reveal d2">
+    <div class="step"><div class="step-n">01</div><div class="step-title">Elige tu producto</div><div class="step-desc">Selecciona la fórmula que mejor se adapta a tu objetivo.</div></div>
+    <div class="step"><div class="step-n">02</div><div class="step-title">Agrégalo al carrito</div><div class="step-desc">Un clic y tu producto queda guardado.</div></div>
+    <div class="step"><div class="step-n">03</div><div class="step-title">Elige cómo pagar</div><div class="step-desc">Tarjeta, transferencia o pago al recibir.</div></div>
+    <div class="step"><div class="step-n">04</div><div class="step-title">Recibe en casa</div><div class="step-desc">Embalaje discreto en 1–2 días hábiles.</div></div>
+  </div>
+</section>
+
+<!-- PAYMENT -->
+<section id="pagos">
+  <div class="reveal"><span class="sec-tag">Métodos de pago</span></div>
+  <h2 class="sec-title reveal d1">Paga como prefieras</h2>
+  <div class="pay-cards reveal d2">
+    <div class="pay-card"><div class="pay-ico">💳</div><div><div class="pay-name">Tarjeta</div><div class="pay-desc">Débito o crédito — pago 100% seguro</div></div></div>
+    <div class="pay-card"><div class="pay-ico">🏦</div><div><div class="pay-name">Transferencia</div><div class="pay-desc">Te enviamos los datos por WhatsApp</div></div></div>
+    <div class="pay-card"><div class="pay-ico">📦</div><div><div class="pay-name">Contra entrega</div><div class="pay-desc">Pagas cuando recibes tu pedido</div></div></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="preguntas">
+  <div class="reveal"><span class="sec-tag">FAQ</span></div>
+  <h2 class="sec-title reveal d1">Preguntas frecuentes</h2>
+  <div class="faqs reveal d2">
+    <div class="faq"><button class="faq-q">¿Los envíos son discretos?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Sí. Todos los pedidos van en embalaje neutro sin logos ni indicaciones del contenido. Tu privacidad está 100% protegida.</div></div></div>
+    <div class="faq"><button class="faq-q">¿Cuánto tarda el envío?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Entre 1 y 2 días hábiles según tu ubicación. Recibirás número de seguimiento para rastrear en tiempo real.</div></div></div>
+    <div class="faq"><button class="faq-q">¿Qué métodos de pago aceptan?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Tarjeta de débito/crédito (pago seguro), transferencia bancaria o pago contra entrega. Todas las transacciones son seguras.</div></div></div>
+    <div class="faq"><button class="faq-q">¿Puedo devolver un producto?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Aceptamos devoluciones dentro de los primeros 7 días si el producto está en condición original.</div></div></div>
+    <div class="faq"><button class="faq-q">¿Cómo contacto al equipo?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Por WhatsApp o el formulario de pedido. Respondemos con total discreción y rapidez.</div></div></div>
+  </div>
+</section>
+
+<!-- ORDER -->
+<section id="contacto">
+  <div class="reveal"><span class="sec-tag">Pedido</span></div>
+  <h2 class="sec-title reveal d1">Completa tu pedido</h2>
+  <div class="order-box reveal d2" id="orderBox">
+
+    <div id="cartSummaryStep">
+      <div class="order-step-lbl"><span class="step-num">1</span> Tu carrito</div>
+      <div class="order-summary" id="orderSummary">
+        <strong>Agrega un producto arriba para continuar</strong>
+      </div>
+    </div>
+
+    <div>
+      <div class="order-step-lbl"><span class="step-num">2</span> Método de pago</div>
+      <div class="pay-opts">
+        <div class="payopt" data-pay="tarjeta"><div class="payopt-ico">💳</div><div><strong>Tarjeta</strong><span>Débito o crédito · pago seguro</span></div></div>
+        <div class="payopt" data-pay="transferencia"><div class="payopt-ico">🏦</div><div><strong>Transferencia bancaria</strong><span>Te enviamos los datos por WhatsApp</span></div></div>
+        <div class="payopt" data-pay="contra-entrega"><div class="payopt-ico">📦</div><div><strong>Contra entrega</strong><span>Pagas cuando recibes tu pedido</span></div></div>
+      </div>
+    </div>
+
+    <div id="dataStep" style="display:none;">
+      <div class="order-step-lbl"><span class="step-num">3</span> Datos de entrega</div>
+      <div class="form-grid">
+        <div class="fg"><label class="flbl">Nombre *</label><input class="finp" id="fN" placeholder="Tu nombre" autocomplete="given-name"></div>
+        <div class="fg"><label class="flbl">Apellido *</label><input class="finp" id="fA" placeholder="Tu apellido" autocomplete="family-name"></div>
+        <div class="fg"><label class="flbl">Cédula *</label><input class="finp" id="fC" placeholder="0123456789" inputmode="numeric"></div>
+        <div class="fg"><label class="flbl">Celular *</label><input class="finp" id="fT" placeholder="0987654321" inputmode="tel" autocomplete="tel"></div>
+        <div class="fg">
+          <label class="flbl">Provincia *</label>
+          <select class="fsel" id="fP">
+            <option value="">Selecciona...</option>
+            <option>Azuay</option><option>Bolívar</option><option>Cañar</option><option>Carchi</option>
+            <option>Chimborazo</option><option>Cotopaxi</option><option>El Oro</option><option>Esmeraldas</option>
+            <option>Galápagos</option><option>Guayas</option><option>Imbabura</option><option>Loja</option>
+            <option>Los Ríos</option><option>Manabí</option><option>Morona Santiago</option><option>Napo</option>
+            <option>Orellana</option><option>Pastaza</option><option>Pichincha</option><option>Santa Elena</option>
+            <option>Santo Domingo de los Tsáchilas</option><option>Sucumbíos</option><option>Tungurahua</option><option>Zamora Chinchipe</option>
+          </select>
+        </div>
+        <div class="fg"><label class="flbl">Ciudad *</label><input class="finp" id="fCi" placeholder="Tu ciudad"></div>
+        <div class="fg full"><label class="flbl">Dirección de domicilio *</label><input class="finp" id="fD" placeholder="Calle, número, barrio, referencia" autocomplete="street-address"></div>
+      </div>
+    </div>
+
+    <div id="panelTarjeta" class="info-panel" style="display:none;"><div class="info-panel-ico">💳</div><div><strong>Pago con tarjeta</strong><p>Al confirmar abriremos el formulario de pago seguro. Acepta débito y crédito.</p></div></div>
+    <div id="panelTrans" class="info-panel" style="display:none;"><div class="info-panel-ico">🏦</div><div><strong>Transferencia bancaria</strong><p>Al confirmar se abrirá WhatsApp con tu pedido. Te respondemos con los datos bancarios.</p></div></div>
+
+    <div class="ferr" id="ferr"></div>
+    <button class="confirm-btn" id="confirmBtn" disabled>Agrega un producto al carrito</button>
+    <p style="font-size:11px;color:var(--grey);text-align:center;">🔒 Datos usados solo para procesar tu pedido</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <div>
+      <a href="#inicio" class="foot-logo">Testo<span>Power</span></a>
+      <p class="foot-tagline">Suplementos premium para el bienestar masculino. Discreción garantizada en cada pedido.</p>
+      <div class="foot-socials">
+        <a href="#" class="social">📸</a>
+        <a href="#" class="social">📘</a>
+        <a href="#" class="social">🎵</a>
+        <a href="#" class="social">💬</a>
+      </div>
+    </div>
+    <div>
+      <div class="foot-nav-title">Navegación</div>
+      <ul class="foot-nav">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#preguntas">FAQ</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="foot-nav-title">Legal</div>
+      <ul class="foot-nav">
+        <li><a href="#">Política de privacidad</a></li>
+        <li><a href="#">Términos y condiciones</a></li>
+        <li><a href="#">Política de devoluciones</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-divider"></div>
+  <div class="foot-bottom">
+    <p class="foot-copy">© 2025 <b>TestoPower</b> · Todos los derechos reservados.</p>
+    <div class="foot-legal"><a href="#">Privacidad</a><a href="#">Términos</a><a href="#">Devoluciones</a></div>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="overlay" id="overlay"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3>🛒 Tu carrito</h3>
+    <button class="close-drawer" id="closeDrawer">✕</button>
+  </div>
+  <div class="drawer-items" id="drawerItems">
+    <div class="cart-empty"><div class="ei">🛒</div><p>Tu carrito está vacío.<br>Agrega un producto para comenzar.</p></div>
+  </div>
+  <div class="drawer-footer" id="drawerFooter" style="display:none;">
+    <div class="total-row"><span class="total-lbl">Total</span><strong class="total-val" id="totalVal">$0.00</strong></div>
+    <button class="checkout-btn" id="checkoutBtn">💳 Comprar ahora →</button>
+    <p class="security-note">🔒 Pago 100% seguro · Envío discreto</p>
+  </div>
+</div>
+
+<!-- CARD PAYMENT MODAL -->
+<div class="modal-overlay" id="ppModal">
+  <div class="modal">
+    <button class="modal-close" id="ppClose">✕</button>
+    <div class="modal-tag">Pago seguro</div>
+    <div class="modal-title">Pagar con tarjeta</div>
+    <div class="modal-product" id="ppProduct"></div>
+    <div class="modal-amount"><span>Total a pagar</span><strong id="ppAmount"></strong></div>
+    <div class="modal-cards">
+      <span>VISA</span><span>Mastercard</span><span>Amex</span><span>Diners</span>
+    </div>
+    <div id="paypal-btn-container"></div>
+    <div id="pp-loading">Cargando pasarela de pago...</div>
+    <div class="modal-secure">🔒 Pago cifrado SSL · Datos protegidos</div>
+    <div class="trust-badges">
+      <div class="tb">🛡️ Compra protegida</div>
+      <div class="tb">✅ Verificado</div>
+      <div class="tb">↩️ Reembolso 7 días</div>
+    </div>
+  </div>
+</div>
+
+<!-- Card payment SDK (client-id only, never expose the Secret here) -->
+<script src="https://www.paypal.com/sdk/js?client-id=ARrx542LuFUHoRqbGlv0wTuWgFzlOW4JJs8FYMkC0qRyu_PdW7G7iYcDV_N6rBb20pCGzyIzkl6yteY3&currency=USD&disable-funding=paypal,paylater,venmo&enable-funding=card&components=buttons" data-csp-nonce=""></script>
+
+<script>
+const WA = '593960702682';
+
+// ── CART STATE ──
+let cart = [];
+
+// ── ADD TO CART ──
+function addToCart(name, priceStr, imgIdx) {
+  const price = parseFloat(priceStr);
+  const imgEl = document.getElementById('img'+imgIdx);
+  const imgSrc = imgEl ? imgEl.src : '';
+  const existing = cart.find(i => i.name === name);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({name, price, qty:1, imgSrc});
+  }
+  updateCart();
+  openDrawer();
+}
+
+function updateCart() {
+  const count = cart.reduce((s,i) => s+i.qty, 0);
+  const total = cart.reduce((s,i) => s+i.price*i.qty, 0);
+  const cc = document.getElementById('cartCount');
+  cc.textContent = count;
+  cc.classList.toggle('show', count > 0);
+
+  const items = document.getElementById('drawerItems');
+  const footer = document.getElementById('drawerFooter');
+  document.getElementById('totalVal').textContent = '$' + total.toFixed(2);
+  footer.style.display = cart.length ? 'block' : 'none';
+
+  if (!cart.length) {
+    items.innerHTML = '<div class="cart-empty"><div class="ei">🛒</div><p>Tu carrito está vacío.<br>Agrega un producto.</p></div>';
+  } else {
+    items.innerHTML = cart.map((item,idx) => `
+      <div class="citem">
+        <div class="citem-img">${item.imgSrc ? `<img src="${item.imgSrc}" alt="${item.name}">` : '📦'}</div>
+        <div class="citem-info">
+          <div class="citem-name">${item.name}</div>
+          <div class="citem-price">$${item.price.toFixed(2)}</div>
+          <div class="citem-qty">
+            <button class="qty-btn" onclick="changeQty(${idx},-1)">−</button>
+            <span class="qty-num">${item.qty}</span>
+            <button class="qty-btn" onclick="changeQty(${idx},1)">+</button>
+            <button class="citem-del" onclick="removeItem(${idx})">🗑</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+  updateOrderSummary();
+}
+
+function changeQty(idx, delta) {
+  cart[idx].qty += delta;
+  if (cart[idx].qty <= 0) cart.splice(idx, 1);
+  updateCart();
+}
+
+function removeItem(idx) {
+  cart.splice(idx, 1);
+  updateCart();
+}
+
+// ── DRAWER ──
+function openDrawer() {
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('overlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeDrawer() {
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+document.getElementById('cartBtn').addEventListener('click', openDrawer);
+document.getElementById('closeDrawer').addEventListener('click', closeDrawer);
+document.getElementById('overlay').addEventListener('click', closeDrawer);
+
+// ── CHECKOUT FROM CART (no re-selecting the product) ──
+document.getElementById('checkoutBtn').addEventListener('click', () => {
+  closeDrawer();
+  document.getElementById('contacto').scrollIntoView({behavior:'smooth',block:'start'});
+});
+
+// ── HAMBURGER ──
+const ham = document.getElementById('ham');
+const mob = document.getElementById('mobMenu');
+ham.addEventListener('click', () => {
+  ham.classList.toggle('open');
+  mob.classList.toggle('open');
+  document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+});
+document.querySelectorAll('.mlink').forEach(l => l.addEventListener('click', () => {
+  ham.classList.remove('open'); mob.classList.remove('open'); document.body.style.overflow='';
+}));
+
+// ── FAQ ──
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq');
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq').forEach(f => f.classList.remove('open'));
+    if (!open) item.classList.add('open');
+  });
+});
+
+// ── SCROLL REVEAL ──
+const ro = new IntersectionObserver(entries => entries.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('vis'); ro.unobserve(e.target); }
+}), {threshold:0.1, rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// ── TRUST TICKER ──
+(function(){
+  const track = document.getElementById('trustTrack');
+  const g1 = document.getElementById('trustG1');
+  if (!track||!g1) return;
+  requestAnimationFrame(()=>{
+    const gw = g1.getBoundingClientRect().width;
+    let pos=0;
+    function step(){ pos+=0.5; if(pos>=gw) pos-=gw; track.style.transform='translateX(-'+pos.toFixed(2)+'px)'; requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  });
+})();
+
+// ── HEADER SHADOW ──
+const hdr = document.getElementById('hdr');
+window.addEventListener('scroll', ()=>{ hdr.style.boxShadow = window.scrollY>20 ? '0 4px 24px rgba(0,0,0,0.6)' : 'none'; }, {passive:true});
+
+// ── ORDER FORM LOGIC (cart-based, no re-selecting product) ──
+let selPay=null;
+const confirmBtn = document.getElementById('confirmBtn');
+
+function cartTotal(){ return cart.reduce((s,i)=>s+i.price*i.qty,0); }
+function cartLabel(){ return cart.map(i=>`${i.qty}x ${i.name}`).join(', '); }
+
+function updateOrderSummary(){
+  const box = document.getElementById('orderSummary');
+  if (!cart.length) {
+    box.innerHTML = '<strong>Agrega un producto arriba para continuar</strong>';
+  } else {
+    box.innerHTML = `<strong>${cartLabel()}</strong><span>$${cartTotal().toFixed(2)}</span>`;
+  }
+  updateConfirm();
+}
+
+document.querySelectorAll('.payopt').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.querySelectorAll('.payopt').forEach(o=>o.classList.remove('sel'));
+    opt.classList.add('sel'); selPay = opt.dataset.pay;
+    document.getElementById('dataStep').style.display = selPay==='contra-entrega'?'block':'none';
+    document.getElementById('panelTarjeta').style.display = selPay==='tarjeta'?'flex':'none';
+    document.getElementById('panelTrans').style.display = selPay==='transferencia'?'flex':'none';
+    document.getElementById('ferr').style.display='none';
+    updateConfirm();
+  });
+});
+
+function updateConfirm() {
+  if (!cart.length){ confirmBtn.disabled=true; confirmBtn.textContent='Agrega un producto al carrito'; return; }
+  if (!selPay) { confirmBtn.disabled=true; confirmBtn.textContent='Selecciona método de pago'; return; }
+  confirmBtn.disabled=false;
+  const lbl = {tarjeta:'💳 Pagar con tarjeta →', transferencia:'🏦 Ver datos bancarios →', 'contra-entrega':'📦 Confirmar pedido →'};
+  confirmBtn.textContent = lbl[selPay];
+}
+
+function validateForm() {
+  let ok=true;
+  ['fN','fA','fC','fT','fP','fCi','fD'].forEach(id=>{
+    const el=document.getElementById(id); if(!el) return;
+    el.classList.remove('err');
+    if(!el.value.trim()){el.classList.add('err');ok=false;}
+  });
+  return ok;
+}
+
+function buildMsg(type) {
+  const lines = ['🛒 *NUEVO PEDIDO — TestoPower*','━━━━━━━━━━━━━━━',
+    '📦 *Pedido:* '+cartLabel(),'💰 *Total:* $'+cartTotal().toFixed(2),'💳 *Pago:* '+type];
+  if (type==='Contra entrega') {
+    lines.push('━━━━━━━━━━━━━━━','👤 *Datos del cliente:*',
+      '• Nombre: '+document.getElementById('fN').value.trim()+' '+document.getElementById('fA').value.trim(),
+      '• Cédula: '+document.getElementById('fC').value.trim(),
+      '• Celular: '+document.getElementById('fT').value.trim(),
+      '• Provincia: '+document.getElementById('fP').value.trim(),
+      '• Ciudad: '+document.getElementById('fCi').value.trim(),
+      '• Dirección: '+document.getElementById('fD').value.trim());
+  }
+  lines.push('━━━━━━━━━━━━━━━','_testopower.com_');
+  return lines.join('\n');
+}
+
+function abrirWA(txt) {
+  const a=document.createElement('a');
+  a.href='https://wa.me/'+WA+'?text='+encodeURIComponent(txt);
+  a.target='_blank'; a.rel='noopener noreferrer';
+  document.body.appendChild(a); a.click();
+  setTimeout(()=>document.body.removeChild(a),200);
+}
+
+function showSuccess(title, msg) {
+  document.getElementById('orderBox').innerHTML=
+    '<div class="success-box"><div class="success-ico">✅</div><h3>'+title+'</h3><p>'+msg+'</p>'+
+    '<a href="#catalogo" class="btn-primary" style="margin-top:16px;display:inline-flex;">Ver más productos</a></div>';
+  cart = [];
+  updateCart();
+}
+
+confirmBtn.addEventListener('click', ()=>{
+  document.getElementById('ferr').style.display='none';
+  if (selPay==='contra-entrega') {
+    if (!validateForm()) {
+      const ferr=document.getElementById('ferr');
+      ferr.textContent='⚠️ Completa todos los campos marcados: nombre, apellido, cédula, celular, provincia, ciudad y dirección.';
+      ferr.style.display='block';
+      ferr.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    abrirWA(buildMsg('Contra entrega'));
+    showSuccess('📦 ¡Pedido enviado!','Abrimos WhatsApp con tu pedido. Te confirmamos la entrega.');
+  } else if (selPay==='transferencia') {
+    abrirWA(buildMsg('Transferencia bancaria'));
+    showSuccess('🏦 ¡WhatsApp abierto!','Te enviamos los datos bancarios ahora mismo.');
+  } else if (selPay==='tarjeta') {
+    if (!validateForm()) {
+      const ferr=document.getElementById('ferr');
+      ferr.textContent='⚠️ Completa todos los campos marcados: nombre, apellido, cédula, celular, provincia, ciudad y dirección.';
+      ferr.style.display='block';
+      ferr.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    openPaymentModal(cartTotal(), cartLabel());
+  }
+});
+
+// ── CARD PAYMENT MODAL ──
+const ppModal = document.getElementById('ppModal');
+let ppRendered = false;
+
+document.getElementById('ppClose').addEventListener('click',()=>{
+  ppModal.classList.remove('show'); document.body.style.overflow='';
+});
+ppModal.addEventListener('click',e=>{
+  if(e.target===ppModal){ppModal.classList.remove('show');document.body.style.overflow='';}
+});
+
+function openPaymentModal(amount, product) {
+  document.getElementById('ppProduct').textContent = product;
+  document.getElementById('ppAmount').textContent = '$'+amount.toFixed(2);
+  ppModal.classList.add('show');
+  document.body.style.overflow='hidden';
+  if (!ppRendered) initPayPal(amount, product);
+}
+
+function initPayPal(amount, product) {
+  const container = document.getElementById('paypal-btn-container');
+  const loading = document.getElementById('pp-loading');
+  if (typeof paypal==='undefined') {
+    loading.innerHTML='<div style="background:rgba(224,92,58,0.1);border:1px solid rgba(224,92,58,0.3);border-radius:10px;padding:14px;text-align:center;font-size:13px;color:#e05c3a;">⚙️ Activa el Client ID correcto en el código para habilitar pagos con tarjeta.</div>';
+    return;
+  }
+  loading.style.display='none';
+  ppRendered=true;
+  paypal.Buttons({
+    style:{layout:'vertical',color:'black',shape:'rect',label:'pay',height:48},
+    fundingSource: paypal.FUNDING.CARD,
+    createOrder:(data,actions)=>actions.order.create({
+      purchase_units:[{description:product,amount:{currency_code:'USD',value:amount.toFixed(2)}}]
+    }),
+    onApprove:(data,actions)=>actions.order.capture().then(details=>{
+      ppModal.classList.remove('show'); document.body.style.overflow='';
+      showSuccess('💳 ¡Pago completado!','Gracias '+details.payer.name.given_name+'. Tu pedido se procesará y recibirás confirmación pronto.');
+      const dNombre=document.getElementById('fN').value.trim();
+      const dApellido=document.getElementById('fA').value.trim();
+      const dCedula=document.getElementById('fC').value.trim();
+      const dTel=document.getElementById('fT').value.trim();
+      const dProv=document.getElementById('fP').value.trim();
+      const dCiu=document.getElementById('fCi').value.trim();
+      const dDir=document.getElementById('fD').value.trim();
+      const msg='💳 *PAGO CON TARJETA COMPLETADO*\n━━━━━━━━━━━━━━━\n📦 '+product+'\n💰 $'+amount.toFixed(2)+'\n✅ ID: '+details.id+
+        '\n━━━━━━━━━━━━━━━\n👤 *Datos del cliente:*\n• Nombre: '+dNombre+' '+dApellido+'\n• Cédula: '+dCedula+
+        '\n• Celular: '+dTel+'\n• Provincia: '+dProv+'\n• Ciudad: '+dCiu+'\n• Dirección: '+dDir+
+        '\n📧 '+details.payer.email_address;
+      abrirWA(msg);
+    }),
+    onError:(err)=>{console.error(err); loading.style.display='block'; loading.innerHTML='<div style="color:#e05c3a;font-size:13px;text-align:center;padding:10px;">⚠️ Error al procesar. Intenta de nuevo.</div>';},
+    onCancel:()=>{ppModal.classList.remove('show');document.body.style.overflow='';}
+  }).render('#paypal-btn-container');
+}
+
+// ── JJLBRO DESKTOP GRID ──
+function updateJJGrid(){
+  const g=document.getElementById('jjlbro-grid');
+  if(!g) return;
+  g.style.gridTemplateColumns = window.innerWidth>=700 ? '1fr 1fr' : '1fr';
+}
+updateJJGrid();
+window.addEventListener('resize',updateJJGrid,{passive:true});
+
+updateCart();
+</script>
+</body>
+</html>
