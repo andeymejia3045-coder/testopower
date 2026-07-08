@@ -180,6 +180,12 @@ section{padding:72px 20px}
 .pprice-old{font-size:16px;color:var(--grey);text-decoration:line-through;font-weight:500}
 .psave{font-size:11px;background:var(--golddim);color:var(--gold);border:1px solid var(--goldborder);border-radius:20px;padding:2px 8px;font-weight:700}
 
+.pstock{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--red);font-weight:700;margin-bottom:14px}
+.pstock-dot{width:8px;height:8px;border-radius:50%;background:var(--red);flex-shrink:0;animation:pulse-dot 1.4s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
+.pstock-bar{width:100%;height:5px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;margin-top:6px}
+.pstock-bar-fill{height:100%;background:linear-gradient(90deg,var(--red),#ff8a6b);border-radius:3px}
+
 .pbullets{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
 .pbullets li{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--greyl);line-height:1.4}
 .pbullets li::before{content:'';width:5px;height:5px;background:var(--gold);border-radius:50%;flex-shrink:0;margin-top:5px}
@@ -531,6 +537,8 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
           <div class="pprice-old">$34.99</div>
           <div class="psave">Ahorras $10</div>
         </div>
+        <div class="pstock"><span class="pstock-dot"></span>¡Quedan solo 7 unidades!</div>
+        <div class="pstock-bar" style="margin-bottom:14px;"><div class="pstock-bar-fill" style="width:23%;"></div></div>
         <ul class="pbullets">
           <li>Vitalidad, energía y rendimiento físico</li>
           <li>Maca negra + L-Arginina + Zinc + Vit. C</li>
@@ -565,6 +573,8 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
           <div class="pprice-old">$59.98</div>
           <div class="psave">Ahorras $20</div>
         </div>
+        <div class="pstock"><span class="pstock-dot"></span>¡Quedan solo 4 packs!</div>
+        <div class="pstock-bar" style="margin-bottom:14px;"><div class="pstock-bar-fill" style="width:14%;"></div></div>
         <ul class="pbullets">
           <li>Más masa muscular y fuerza</li>
           <li>Libido, testosterona y energía</li>
@@ -601,6 +611,8 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
             <div class="pprice-old">$29.99</div>
             <div class="psave">Ahorras $10</div>
           </div>
+          <div class="pstock"><span class="pstock-dot"></span>¡Quedan solo 11 unidades!</div>
+          <div class="pstock-bar" style="margin-bottom:14px;"><div class="pstock-bar-fill" style="width:37%;"></div></div>
 
           <!-- Visual icon hook — communicates benefit without reading -->
           <div class="picon-strip">
@@ -645,6 +657,8 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
             <div class="pprice-old">$39.99</div>
             <div class="psave">Ahorras $12</div>
           </div>
+          <div class="pstock"><span class="pstock-dot"></span>¡Quedan solo 5 unidades!</div>
+          <div class="pstock-bar" style="margin-bottom:14px;"><div class="pstock-bar-fill" style="width:17%;"></div></div>
 
           <div class="picon-strip">
             <div class="picon"><span class="picon-emoji">🔥</span><span class="picon-txt">Más deseo y excitación</span></div>
