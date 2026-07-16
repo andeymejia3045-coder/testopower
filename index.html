@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>TestoPower — Bienestar Masculino</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0D0F'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='900' fill='%231FAE72' text-anchor='middle'%3ETP%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 2 L42 12 V30 L24 46 L6 30 V12 Z' fill='%230E1412' stroke='%231FAE72' stroke-width='2'/%3E%3Cpath d='M27 8 L15 26 H23 L20 40 L34 20 H26 Z' fill='%231FAE72'/%3E%3C/svg%3E">
 <meta name="description" content="Suplementos para el bienestar masculino. Compra discreta, envíos en 1-2 días.">
 
 <!-- Google Analytics -->
@@ -52,8 +52,9 @@ button{font-family:var(--font);cursor:pointer;border:none;outline:none}
 
 /* ── HEADER ── */
 header{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;padding:0 18px}
-.logo{font-size:20px;font-weight:800;letter-spacing:-0.02em;color:var(--white)}
+.logo{font-size:20px;font-weight:800;letter-spacing:-0.02em;color:var(--white);display:flex;align-items:center;gap:9px}
 .logo span{color:var(--gold)}
+.logo-icon{width:32px;height:32px;flex-shrink:0}
 .header-actions{display:flex;align-items:center;gap:10px}
 .cart-btn{position:relative;background:var(--card);border:1px solid rgba(255,255,255,0.08);border-radius:10px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;font-size:18px;transition:border-color var(--t)}
 .cart-btn:hover{border-color:var(--goldborder)}
@@ -382,8 +383,9 @@ section{padding:72px 20px}
 footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44px 20px 28px}
 .foot-top{display:grid;grid-template-columns:1fr;gap:32px;margin-bottom:36px}
 @media(min-width:600px){.foot-top{grid-template-columns:1.5fr 1fr 1fr}}
-.foot-logo{font-size:22px;font-weight:800;color:var(--white);margin-bottom:10px;display:block}
+.foot-logo{font-size:22px;font-weight:800;color:var(--white);margin-bottom:10px;display:flex;align-items:center;gap:10px}
 .foot-logo span{color:var(--gold)}
+.foot-logo .logo-icon{width:36px;height:36px}
 .foot-tagline{font-size:13px;color:var(--grey);line-height:1.6;margin-bottom:16px}
 .foot-socials{display:flex;gap:10px}
 .social{width:38px;height:38px;background:var(--card);border:1px solid rgba(255,255,255,0.07);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;transition:border-color var(--t),background var(--t)}
@@ -410,7 +412,13 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
 
 <!-- HEADER -->
 <header id="hdr">
-  <a href="#inicio" class="logo">Testo<span>Power</span></a>
+  <a href="#inicio" class="logo">
+    <svg class="logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24 2 L42 12 V30 L24 46 L6 30 V12 Z" fill="#0E1412" stroke="#1FAE72" stroke-width="2"/>
+      <path d="M27 8 L15 26 H23 L20 40 L34 20 H26 Z" fill="#1FAE72"/>
+    </svg>
+    Testo<span>Power</span>
+  </a>
   <nav class="desk">
     <a href="#inicio">Inicio</a>
     <a href="#catalogo">Catálogo</a>
@@ -802,7 +810,13 @@ footer{background:#060606;border-top:1px solid rgba(255,255,255,0.05);padding:44
 <footer>
   <div class="foot-top">
     <div>
-      <a href="#inicio" class="foot-logo">Testo<span>Power</span></a>
+      <a href="#inicio" class="foot-logo">
+        <svg class="logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 2 L42 12 V30 L24 46 L6 30 V12 Z" fill="#0E1412" stroke="#1FAE72" stroke-width="2"/>
+          <path d="M27 8 L15 26 H23 L20 40 L34 20 H26 Z" fill="#1FAE72"/>
+        </svg>
+        Testo<span>Power</span>
+      </a>
       <p class="foot-tagline">Suplementos premium para el bienestar masculino. Discreción garantizada en cada pedido.</p>
       <div class="foot-socials">
         <a href="#" class="social">📸</a>
